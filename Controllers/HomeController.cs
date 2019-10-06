@@ -6,21 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LanchesWeb.Models;
+using LanchesWeb.ViewModels;
+using LanchesWeb.Repositories;
 
 namespace LanchesWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ISnackRepository _snackRepository;
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        public HomeController(ISnackRepository snackRepository)
         {
-            _logger = logger;
+            _snackRepository = snackRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel homeViewModel = new HomeViewModel() { Starred = _snackRepository.Starred}; 
+
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

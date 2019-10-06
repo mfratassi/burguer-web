@@ -1,0 +1,54 @@
+﻿@model ShoppingCartViewModel
+
+<div class="row">
+    <h2>Shopping cart</h2>
+    <h3>Checkout or keep buying</h3>
+    <table class="table table-bordered table-hover table-striped table-responsive-sm">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Item</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ShoppingCartItem item in Model.ShoppingCart.ShoppingCartItems)
+            {
+            <tr>
+                <td class="text-center">@item.Quantity</td>
+                <td class="text-left">@item.Snack.Name</td>
+                <td class="text-center">@item.Snack.Price.ToString("c")</td>
+                <td class="text-right">@((item.Snack.Price * item.Quantity).ToString("c"))</td>
+                <td class="text-center">
+                    <a class="glyphicon glyphicon-remove text-danger fa-remove remove" asp-action="RemoveItem"></a>
+                </td>  
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total: </td>
+                <td class="text-right">@Model.TotalPrice.ToString("c")</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group">
+            <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Checkout</a>
+            <a class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Add More Items <span class="fa fa-caret-down"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a asp-controller="Snack" asp-action="List" asp-route-snackcategory-="paratododia">Para Todo Dia</a>
+                        <a asp-controller="Snack" asp-action="List" asp-route-snackcategory-="gourmet">Gourmet</a>
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+
+</div>

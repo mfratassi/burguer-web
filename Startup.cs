@@ -28,7 +28,9 @@ namespace LanchesWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<LanchesWebContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
             services.AddTransient<ISnackCategoryRepository, SnackCategoryRepository>();
             services.AddTransient<ISnackRepository, SnackRepository>();
             
@@ -37,6 +39,9 @@ namespace LanchesWeb
             services.AddScoped(sc => ShoppingCart.GetId(sc));
 
             services.AddMvc();
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
