@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanchesWeb.Migrations
 {
     [DbContext(typeof(LanchesWebContext))]
-    [Migration("20191006043448_PopulateSnacks")]
+    [Migration("20191006054431_PopulateSnacks")]
     partial class PopulateSnacks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

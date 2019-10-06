@@ -8,11 +8,11 @@ namespace LanchesWeb.Migrations
         {
             string[] lanchesImages =
             {
-                 "C:\\Users\\mfrat\\Documents\\CURSOS\\DOT NET\\LanchesWeb\\LanchesWeb\\wwwroot\\img\\lanches\\lanche-01.jpg",
-                 "C:\\Users\\mfrat\\Documents\\CURSOS\\DOT NET\\LanchesWeb\\LanchesWeb\\wwwroot\\img\\lanches\\lanche-02.jpg",
-                 "C:\\Users\\mfrat\\Documents\\CURSOS\\DOT NET\\LanchesWeb\\LanchesWeb\\wwwroot\\img\\lanches\\gourmet-01.jpg",
-                 "C:\\Users\\mfrat\\Documents\\CURSOS\\DOT NET\\LanchesWeb\\LanchesWeb\\wwwroot\\img\\lanches\\gourmet-02.jpg",
-                 "C:\\Users\\mfrat\\Documents\\CURSOS\\DOT NET\\LanchesWeb\\LanchesWeb\\wwwroot\\img\\lanches\\gourmet-03.jpg"
+                 "https://sanpagourmet.com/wp-content/uploads/2018/04/burguer-mexicano-820x570.png",
+                 "https://u.tfstatic.com/restaurant_photos/169/523169/169/612/burguer-place-2-e68dc.jpg",
+                 "https://cdn.neemo.com.br/uploads/item/photo/187511/FRANGO-BURGUER.jpg",
+                 "https://live.staticflickr.com/4554/37832964885_75ea155695_b.jpg",
+                 "https://www.comerciosnobairro.com.br/anunciante/img/img_produtos/20170914011451_9414a8f5b810972c3c9a0e2860c07532_1375995380_img_ofertas_premium.jpg"
             };
 
             string[] lanches = {

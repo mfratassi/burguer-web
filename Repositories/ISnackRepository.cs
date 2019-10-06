@@ -6,7 +6,7 @@ using LanchesWeb.Models;
 
 namespace LanchesWeb.Repositories
 {
-    interface ISnackRepository
+    public interface ISnackRepository
     {
         IEnumerable<Snack> Snacks { get; }
 
