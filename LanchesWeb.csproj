@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20191006030513_Initial.cs" />
+    <Compile Remove="Migrations\20191006030513_Initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <Folder Include="wwwroot\img\chefs\" />
