@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using LanchesWeb.Models;
 using LanchesWeb.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace LanchesWeb
 {
@@ -30,6 +31,12 @@ namespace LanchesWeb
             services.AddDbContext<LanchesWebContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddTransient<ISnackCategoryRepository, SnackCategoryRepository>();
             services.AddTransient<ISnackRepository, SnackRepository>();
+            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped(sc => ShoppingCart.GetId(sc));
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +54,7 @@ namespace LanchesWeb
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

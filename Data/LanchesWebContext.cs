@@ -11,5 +11,7 @@ namespace LanchesWeb.Models
 
         public DbSet<SnackCategory> SnackCategories { get; set; }
 
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
     }
 }
