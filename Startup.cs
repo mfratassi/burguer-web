@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using LanchesWeb.Models;
+using LanchesWeb.Repositories;
 
 namespace LanchesWeb
 {
@@ -27,6 +28,8 @@ namespace LanchesWeb
         {
             services.AddControllersWithViews();
             services.AddDbContext<LanchesWebContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddTransient<ISnackCategoryRepository, SnackCategoryRepository>();
+            services.AddTransient<ISnackRepository, SnackRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
