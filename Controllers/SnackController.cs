@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LanchesWeb.Repositories;
 using LanchesWeb.Models;
+using LanchesWeb.ViewModels;
 
 namespace LanchesWeb.Controllers
 {
@@ -21,8 +22,14 @@ namespace LanchesWeb.Controllers
 
         public IActionResult List()
         {
-            IEnumerable<Snack> snacks = _snackRepository.Snacks;
-            return View(snacks);
+            //IEnumerable<Snack> snacks = _snackRepository.Snacks;
+            //return View(snacks);
+
+            SnackListViewModel snackList = new SnackListViewModel();
+            snackList.Snacks = _snackRepository.Snacks;
+            snackList.CurrentCategory = "Current Category";
+
+            return View(snackList);
         }
     }
 }
