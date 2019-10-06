@@ -12,8 +12,8 @@ namespace LanchesWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,12 +26,12 @@ namespace LanchesWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    ShorDescription = table.Column<string>(nullable: true),
-                    LongDescription = table.Column<string>(nullable: true),
-                    MainImage = table.Column<string>(nullable: true),
-                    MainThumbnail = table.Column<string>(nullable: true),
+                    ShorDescription = table.Column<string>(maxLength: 100, nullable: true),
+                    LongDescription = table.Column<string>(maxLength: 255, nullable: true),
+                    MainImage = table.Column<string>(maxLength: 255, nullable: true),
+                    MainThumbnail = table.Column<string>(maxLength: 255, nullable: true),
                     IsStarred = table.Column<bool>(nullable: false),
                     IsAvailable = table.Column<bool>(nullable: false),
                     SnackCategoryId = table.Column<int>(nullable: false)
