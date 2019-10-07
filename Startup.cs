@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using LanchesWeb.Models;
 using LanchesWeb.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LanchesWeb
 {
@@ -41,7 +42,7 @@ namespace LanchesWeb
             services.AddMvc();
 
             services.AddMemoryCache();
-            services.AddSession();
+            services.AddSession();           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,9 +69,15 @@ namespace LanchesWeb
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name:"filterSnacksByCategory", 
+                    pattern: "{Controller=Snack}/{action=List}/{snackCategory?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

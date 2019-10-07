@@ -18,12 +18,13 @@ namespace LanchesWeb.Components
 
         public IViewComponentResult Invoke()
         {
-            //List<ShoppingCartItem> shoppingCartItems = _shoppingCart.GetItems();
-            List<ShoppingCartItem> shoppingCartItems = new List<ShoppingCartItem>()
-            {
-                new ShoppingCartItem(){ }, 
-                new ShoppingCartItem(){ }
-            };
+            List<ShoppingCartItem> shoppingCartItems = _shoppingCart.GetItems();
+
+            //List<ShoppingCartItem> shoppingCartItems = new List<ShoppingCartItem>()
+            //{
+            //    new ShoppingCartItem(){ }, 
+            //    new ShoppingCartItem(){ }
+            //};
 
             _shoppingCart.ShoppingCartItems = shoppingCartItems;
 

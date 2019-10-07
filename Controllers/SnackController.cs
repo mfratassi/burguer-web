@@ -20,16 +20,51 @@ namespace LanchesWeb.Controllers
             _snackCategoryRepository = snackCategoryRepository;
         }
 
-        public IActionResult List()
+        public IActionResult List(string snackCategory)
         {
-            //IEnumerable<Snack> snacks = _snackRepository.Snacks;
-            //return View(snacks);
+            string _snackCategory = snackCategory;
+            IEnumerable<Snack> snacks;
+            string currentSnackCategory = string.Empty;
 
-            SnackListViewModel snackList = new SnackListViewModel();
-            snackList.Snacks = _snackRepository.Snacks;
-            snackList.CurrentCategory = "Current Category";
+            if (string.IsNullOrEmpty(snackCategory))
+            {
+                snacks = _snackRepository.Snacks.OrderBy(s => s.Id);
+                currentSnackCategory = "All";
+            }
+            else
+            {
+                if (string.Equals("Para Todo Dia", _snackCategory, StringComparison.OrdinalIgnoreCase))
+                {
+                    snacks = _snackRepository.Snacks
+                        .Where(s => s.SnackCategory.Name.Equals("Para Todo Dia"))
+                        .OrderBy(s => s.SnackCategory.Name);
+                }
+                else
+                {
+                    snacks = _snackRepository.Snacks
+                        .Where(s => s.SnackCategory.Name.Equals("Gourmet"))
+                        .OrderBy(s => s.SnackCategory.Name);
+                }
 
-            return View(snackList);
+                currentSnackCategory = _snackCategory;
+            }
+            
+            SnackListViewModel snackListViewModel = new SnackListViewModel
+            {
+                CurrentCategory = currentSnackCategory,
+                Snacks = snacks
+            };
+
+            return View(snackListViewModel);
+        }
+
+        public IActionResult Details(int snackId)
+        {
+            Snack snack =_snackRepository.GetSnackById(snackId);
+            if (snack == null)
+                return View("~/Views/Error/Error.cshtml");
+            
+            return View(snack);
         }
     }
 }

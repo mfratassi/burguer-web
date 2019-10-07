@@ -1,0 +1,17 @@
+﻿@model Snack
+<div class="row center_div">
+    <div class="col-sm-6">
+        <div class="card">
+            <img class="card-img-top" src="@Model.MainImage" width="360" height="240" alt="@Model.ShorDescription">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.LongDescription</p>
+                <p class="card-text"><small class="text-muted">@Model.Price.ToString("c")</small></p>
+                <a asp-controller="ShoppingCart" asp-action="AddItem" asp-route-data="@Model.Id" class="btn btn-outline-primary">
+                    <span class="material-icons">add</span> Add to cart
+                </a>
+                <a asp-controller="Snack" asp-action="List">See all burguers</a>
+            </div>
+        </div>
+    </div>
+</div>
