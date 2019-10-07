@@ -1,15 +1,13 @@
 ﻿@model ShoppingCartViewModel
-@{ 
-    if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
-    {
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="ShoppingCart">
-                <span class="material-icons">local_grocery_store</span>
-                <span id="cart-status">
-                    @Model.ShoppingCart.ShoppingCartItems.Count
-                </span>
-            </a>
-        </li>
-    }
+@{
+
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="ShoppingCart">
+            <span class="material-icons">local_grocery_store</span>
+            <span id="cart-status">
+                @Model.ShoppingCart.ShoppingCartItems.Count
+            </span>
+        </a>
+    </li>
 }
 
