@@ -16,6 +16,22 @@
     <Compile Remove="Migrations\20191006030513_Initial.Designer.cs" />
     <Compile Remove="Migrations\20191006031157_Initial.cs" />
     <Compile Remove="Migrations\20191006031157_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191006032236_Initial.cs" />
+    <Compile Remove="Migrations\20191006032236_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191006033328_PopulateDb.cs" />
+    <Compile Remove="Migrations\20191006033328_PopulateDb.Designer.cs" />
+    <Compile Remove="Migrations\20191006054431_PopulateSnacks.cs" />
+    <Compile Remove="Migrations\20191006054431_PopulateSnacks.Designer.cs" />
+    <Compile Remove="Migrations\20191006063831_ShoppingCartItem.cs" />
+    <Compile Remove="Migrations\20191006063831_ShoppingCartItem.Designer.cs" />
+    <Compile Remove="Migrations\20191007220308_Orders.cs" />
+    <Compile Remove="Migrations\20191007220308_Orders.Designer.cs" />
+    <Compile Remove="Migrations\20191008221029_Initial.cs" />
+    <Compile Remove="Migrations\20191008221029_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191008221054_PopulateDb.cs" />
+    <Compile Remove="Migrations\20191008221054_PopulateDb.Designer.cs" />
+    <Compile Remove="Migrations\20191008221129_PopulateSnakcs.cs" />
+    <Compile Remove="Migrations\20191008221129_PopulateSnakcs.Designer.cs" />
     <Compile Remove="ViewModels\_ShoppingCartViewModel.cs" />
   </ItemGroup>
 

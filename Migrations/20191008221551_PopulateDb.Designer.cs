@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanchesWeb.Migrations
 {
     [DbContext(typeof(LanchesWebContext))]
-    [Migration("20191007220308_Orders")]
-    partial class Orders
+    [Migration("20191008221551_PopulateDb")]
+    partial class PopulateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +169,7 @@ namespace LanchesWeb.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ShorDescription")
+                    b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -206,7 +206,7 @@ namespace LanchesWeb.Migrations
 
             modelBuilder.Entity("LanchesWeb.Models.OrderItem", b =>
                 {
-                    b.HasOne("LanchesWeb.Models.Order", "Oder")
+                    b.HasOne("LanchesWeb.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)

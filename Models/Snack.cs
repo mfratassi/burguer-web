@@ -15,7 +15,7 @@ namespace LanchesWeb.Models
         public decimal Price { get; set; }
 
         [StringLength(maximumLength:100, ErrorMessage = "Quantidade máxima de carácteres para {0}: {1}")]
-        public string ShorDescription { get; set; }
+        public string ShortDescription { get; set; }
 
         [StringLength(maximumLength: 255, ErrorMessage = "Quantidade máxima de carácteres para {0}: {1}")]
         public string LongDescription { get; set; }

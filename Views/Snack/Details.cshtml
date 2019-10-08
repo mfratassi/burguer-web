@@ -1,6 +1,6 @@
 ﻿@model Snack
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="@Model.MainImage" width="360" height="240" alt="@Model.ShorDescription">
+    <img class="card-img-top" src="@Model.MainImage" width="360" height="240" alt="@Model.ShortDescription">
     <div class="card-body">
         <a class="card-title" asp-controller="Snack" asp-action="Details" asp-route-snackid="@Model.Id">@Model.Name</a>
         <p class="card-text">@Model.LongDescription</p>
