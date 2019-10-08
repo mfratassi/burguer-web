@@ -34,7 +34,8 @@ namespace LanchesWeb
 
             services.AddTransient<ISnackCategoryRepository, SnackCategoryRepository>();
             services.AddTransient<ISnackRepository, SnackRepository>();
-            
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(sc => ShoppingCart.GetId(sc));

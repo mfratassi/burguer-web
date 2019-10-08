@@ -7,5 +7,6 @@ namespace LanchesWeb.ViewModels
         public ShoppingCart ShoppingCart { get; set; }
 
         public decimal TotalPrice { get; set; }
+
     }
 }

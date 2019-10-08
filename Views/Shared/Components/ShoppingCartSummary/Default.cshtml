@@ -4,9 +4,14 @@
     <li class="nav-item">
         <a class="nav-link" asp-controller="ShoppingCart">
             <span class="material-icons">local_grocery_store</span>
-            <span id="cart-status">
-                @Model.ShoppingCart.ShoppingCartItems.Count
-            </span>
+            @{
+                int _qty = 0;
+                foreach (ShoppingCartItem shoppingCartItem in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    _qty += shoppingCartItem.Quantity;
+                }
+            }
+            <span id="cart-status">@_qty</span>
         </a>
     </li>
 }

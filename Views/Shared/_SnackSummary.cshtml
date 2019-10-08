@@ -1,6 +1,21 @@
 ﻿@model Snack
 
-<div class="col-sm-3 card">
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.MainImage" width="360" height="240" alt="@Model.ShorDescription">
+    <div class="card-body">
+        <a class="card-title" asp-controller="Snack" asp-action="Details" asp-route-snackid="@Model.Id">@Model.Name</a>
+        <p class="card-text">@Model.ShorDescription</p>
+        <p class="card-text">@Model.Price.ToString("c")</p>
+    </div>
+    <div class="card-footer">
+        <a asp-controller="ShoppingCart" asp-action="AddItem" asp-route-snackid="@Model.Id" class="btn btn-outline-primary">
+            <span class="material-icons">add</span> Add to cart
+        </a>
+        <a asp-controller="Snack" asp-action="List">See all burguers</a>
+    </div>
+</div>
+
+@*<div class="col-sm-3 card">
     <div class="thumbnail">
         <img style="border: 1px solid grey; border-radius:1px; padding:1em" width="240" height="150" class="img-rounded" src="@Model.MainImage" />
     </div>
@@ -18,4 +33,4 @@
             </a>
         </p>
     </div>
-</div>
+</div>*@

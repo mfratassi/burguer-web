@@ -7,7 +7,7 @@ namespace LanchesWeb.Models
 {
     public class Order
     {
-        [BindNever]
+        //[BindNever]
         public int OrderId { get; set; }
 
         public List<OrderItem> OrderItems{ get; set; }
@@ -36,12 +36,12 @@ namespace LanchesWeb.Models
         public string PostalCode { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
-        [Display(Name = "Complement")]
+        [Display(Name = "Province")]
         [StringLength(maximumLength: 20, ErrorMessage = "{0} must be at least {2} and maximum {1}")]
         public string Province { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
-        [Display(Name = "Complement")]
+        [Display(Name = "City")]
         [StringLength(maximumLength: 50, ErrorMessage = "{0} must be at least {2} and maximum {1}")]
         public string City { get; set; }
 
@@ -57,12 +57,12 @@ namespace LanchesWeb.Models
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
-        [BindNever]
-        [ScaffoldColumn(false)]
+        //[BindNever]
+        //[ScaffoldColumn(false)]
         public decimal Total { get; set; }
 
-        [BindNever]
-        [ScaffoldColumn(false)]
+        //[BindNever]
+        //[ScaffoldColumn(false)]
         public DateTime OrderDate { get; set; }
     }
 }

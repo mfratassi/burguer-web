@@ -14,7 +14,7 @@
 
         public virtual Snack Snack { get; set; }
 
-        public virtual Order Oder { get; set; }
+        public virtual Order Order { get; set; }
 
     }
 }

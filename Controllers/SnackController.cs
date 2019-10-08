@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LanchesWeb.Models;
+using LanchesWeb.Repositories;
+using LanchesWeb.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LanchesWeb.Repositories;
-using LanchesWeb.Models;
-using LanchesWeb.ViewModels;
 
 namespace LanchesWeb.Controllers
 {
@@ -65,6 +64,20 @@ namespace LanchesWeb.Controllers
                 return View("~/Views/Error/Error.cshtml");
             
             return View(snack);
+        }
+
+        public IActionResult Search(string searchString)
+        {
+            string _searchString = searchString;
+            string _currentCategory = string.Empty;
+            IEnumerable<Snack> snacks;
+
+            if (string.IsNullOrEmpty(_searchString))
+                snacks = _snackRepository.Snacks.OrderBy(s => s.Id);
+            else
+                snacks = _snackRepository.Snacks.Where(s => s.Name.ToLower().Contains(_searchString.ToLower()));
+
+            return View("~/Views/Snack/List.cshtml", new SnackListViewModel { Snacks = snacks, CurrentCategory = _currentCategory} );
         }
     }
 }
