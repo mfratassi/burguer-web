@@ -22,6 +22,10 @@ namespace LanchesWeb.Repositories
             //if (order.OrderId >= 0)
             //    order.OrderId = null;
 
+            foreach (ShoppingCartItem sci in _shoppingCart.ShoppingCartItems)
+                order.Total += sci.Snack.Price * sci.Quantity;
+
+
             _lanchesWebContext.Orders.Add(order);
 
             _lanchesWebContext.SaveChanges();
