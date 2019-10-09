@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using LanchesWeb.Models;
 using LanchesWeb.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +44,12 @@ namespace LanchesWeb
             services.AddMvc();
 
             services.AddMemoryCache();
-            services.AddSession();           
+            services.AddSession();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<LanchesWebContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +72,8 @@ namespace LanchesWeb
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,9 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanchesWeb.Models
 {
-    public class LanchesWebContext : DbContext
+    public class LanchesWebContext : IdentityDbContext<IdentityUser>
     {
         public LanchesWebContext(DbContextOptions<LanchesWebContext> options) : base(options) { }
 
