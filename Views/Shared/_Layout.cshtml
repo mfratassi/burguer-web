@@ -27,9 +27,12 @@
                         <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Contact">Contact</a>
                     </li>
                     @await Component.InvokeAsync("ShoppingCartSummary")
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Admin" asp-action="Index" asp-controller="Admin">Admin</a>
-                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-action="Index" asp-controller="Admin">Admin</a>
+                        </li>
+                    }
                 </ul>
                 <form class="form-inline my-2 my-lg-0" asp-controller="Snack" asp-action="Search" method="get">
                     <input class="form-control mr-sm-2" name="searchString" value="@ViewData["searchString"]" type="search" placeholder="Search" aria-label="Search">

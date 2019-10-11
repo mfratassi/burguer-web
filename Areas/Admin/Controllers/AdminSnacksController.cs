@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace LanchesWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminSnacksController : Controller
     {
         private readonly LanchesWebContext _context;

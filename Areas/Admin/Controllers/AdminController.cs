@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LanchesWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public IActionResult Index()

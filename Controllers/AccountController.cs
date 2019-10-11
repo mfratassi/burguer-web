@@ -91,7 +91,12 @@ namespace LanchesWeb.Controllers
                 Microsoft.AspNetCore.Identity.IdentityResult identityResult = await _userManager.CreateAsync(user, registerViewModel.Password);
 
                 if (identityResult.Succeeded)
-                    return RedirectToAction("Index", "Home");
+                {
+                    await _userManager.AddToRoleAsync(user, "Member");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("LoggedIn", "Account");
+                }
                 else
                 {
                     ViewBag.Errors = identityResult.Errors.ToList();
