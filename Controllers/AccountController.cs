@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using LanchesWeb.ViewModels;
+using System.Web;
 
 namespace LanchesWeb.Controllers
 {
@@ -22,6 +23,7 @@ namespace LanchesWeb.Controllers
             _signInManager = signInManager;
         }
 
+        [HttpGet]
         //GET
         public IActionResult Login(string returnUrl)
         {
@@ -29,29 +31,45 @@ namespace LanchesWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (!ModelState.IsValid)
-                return View(loginViewModel);
+                return View(loginVM);
 
-            IdentityUser user = await _userManager.FindByNameAsync(loginViewModel.Username);
+            var user = await _userManager.FindByNameAsync(loginVM.Username);
 
             if (user != null)
             {
-                Microsoft.AspNetCore.Identity.SignInResult signInResult =
-                    await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
-
-                if (signInResult.Succeeded)
+                var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
+                if (result.Succeeded)
                 {
-                    if (string.IsNullOrEmpty(loginViewModel.ReturnUrl))
+                    if (string.IsNullOrEmpty(loginVM.ReturnUrl))
+                    {
                         return RedirectToAction("Index", "Home");
-                    return RedirectToAction(loginViewModel.ReturnUrl);
+                    }
+                    try
+                    {
+                        var _returnUrl = "~" + loginVM.ReturnUrl.ToString();
+                        return RedirectPreserveMethod(loginVM.ReturnUrl.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                    
+                }
+                else
+                {
+                    return View(loginVM);
                 }
             }
-
-            ModelState.AddModelError("", "Invalid username or password.");
-            return View(loginViewModel);
+            else
+            {
+                ModelState.AddModelError("", "Usuário/Senha inválidos ou não localizados!!");
+                return View(loginVM);
+            }
+            
         }
 
         public IActionResult Register()

@@ -1,6 +1,7 @@
 ﻿using LanchesWeb.Models;
 using LanchesWeb.Repositories;
 using LanchesWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,16 @@ namespace LanchesWeb.Controllers
                 TotalPrice = _shoppingCart.TotalPrice()
             };
 
+            if (TempData["ModelMessage"] != null)
+            {
+                ViewBag.ModelMessage = TempData["ModelMessage"];
+                TempData.Remove("ModelMessage");
+            }
 
             return View(shoppingCartViewModel);
         }
 
+        //[Authorize]
         public RedirectToActionResult AddItem(int snackId)
         {
             Snack snack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == snackId);
@@ -44,6 +51,7 @@ namespace LanchesWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        //[Authorize]
         public RedirectToActionResult RemoveItem(int snackId)
         {
             Snack snack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == snackId);

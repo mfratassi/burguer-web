@@ -64,5 +64,16 @@ namespace LanchesWeb.Models
         //[BindNever]
         //[ScaffoldColumn(false)]
         public DateTime OrderDate { get; set; }
+
+        [Display(Name = "Horário saída do pedido")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? DepartureTime { get; set; }
+
+        [Display(Name="Entregue em")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString ="{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode =true)]
+        public DateTime? DeliveredTime { get; set; }
+
     }
 }

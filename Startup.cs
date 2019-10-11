@@ -28,8 +28,8 @@ namespace LanchesWeb
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews();
+        { 
+            //services.AddControllersWithViews();
 
             services.AddDbContext<LanchesWebContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
@@ -41,7 +41,9 @@ namespace LanchesWeb
 
             services.AddScoped(sc => ShoppingCart.GetId(sc));
 
-            services.AddMvc();
+            services.AddMvc(option =>
+                    option.EnableEndpointRouting = false
+                );
 
             services.AddMemoryCache();
             services.AddSession();
@@ -69,21 +71,41 @@ namespace LanchesWeb
             app.UseStaticFiles();
             app.UseSession();
 
-            app.UseRouting();
+            //app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapAreaControllerRoute(
+            //        name: "Admin", 
+            //        areaName:"Admin", 
+            //        pattern:"{area:exists}/{controller=Admin}/{Action=Index}/{id?}"); 
 
-                endpoints.MapControllerRoute(
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            //    endpoints.MapControllerRoute(
+            //        name: "filterSnacksByCategory",
+            //        pattern: "{Controller=Snack}/{action=List}/{snackCategory?}");
+            //});
+
+            app.UseMvc(routes =>
+            {
+
+
+                routes.MapRoute("areaRoute", "{area:exists}/{Controller=Admin}/{Action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "filterSnacksByCategory",
-                    pattern: "{Controller=Snack}/{action=List}/{snackCategory?}");
+                    template: "{Controller=Snack}/{action=List}/{snackCategory?}");
             });
 
             

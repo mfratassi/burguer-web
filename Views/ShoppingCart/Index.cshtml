@@ -1,4 +1,5 @@
 ﻿@model ShoppingCartViewModel
+    <p class="text-danger">@ViewBag.ModelMessage</p>
 
     <div class="row">
         <table class="table table-bordered table-hover table-striped">
@@ -32,7 +33,10 @@
 
         <div>
             <div class="btn-group">
-                <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Checkout</a>
+                <form asp-action="Checkout" asp-controller="Order" method="get">
+                    <input class="btn btn-success" type="submit" value="Checkout" />
+                </form>
+                @*<a class="btn btn-success" asp-controller="Order" asp-action="Checkout" >Checkout</a>*@
                 <a class="btn-group">
                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Add More Items <span class="fa fa-caret-down"></span>

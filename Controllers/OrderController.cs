@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LanchesWeb.Models;
 using LanchesWeb.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LanchesWeb.Controllers
 {
@@ -28,15 +29,20 @@ namespace LanchesWeb.Controllers
         //{
         //    _context = context;
         //}
-        
+
+        [HttpGet]
+        //[Authorize]
         public IActionResult Checkout()
         {
+            //if (_shoppingCart.ShoppingCartItems == null)
+            //{
+            //    TempData["ModelMessage"] = "Your shopping cart is empty. Go back and add some items!";
+            //    return RedirectToAction("Index", "ShoppingCart", TempData);
+            //}
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        
         public IActionResult Checkout(Order order)
         {
             List<ShoppingCartItem> shoppingCartItems = _shoppingCart.GetItems();
@@ -44,18 +50,28 @@ namespace LanchesWeb.Controllers
 
             if (_shoppingCart.ShoppingCartItems.Count == 0)
             {
+                TempData["ModelMessage"] = "Your shopping cart is empty. Go back and add some items!";
                 ModelState.AddModelError("", "Shopping cart is empty. Go back and add some items");
                 ViewBag.ModelMessage = ("Shopping cart is empt. Go back and add some items.");
+                return Redirect("/ShoppingCart/Index");
             }
 
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
+            {               
+
+                if (ModelState.IsValid)
+                {
+                    _orderRepository.ProcessOrder(order);
+                    _shoppingCart.ClearAll();
+                    return RedirectToAction("CheckoutSuccess");
+                }
+
+                return View(order);
+            }
+            else
             {
-                _orderRepository.ProcessOrder(order);
-                _shoppingCart.ClearAll();
-                return RedirectToAction("CheckoutSuccess");
+                return RedirectToAction("Login", "Account");
             }
-
-            return View(order);
         }
 
         public IActionResult CheckoutSuccess()
