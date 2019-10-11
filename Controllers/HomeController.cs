@@ -22,6 +22,11 @@ namespace LanchesWeb.Controllers
         //    _logger = logger;
         //}
 
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
+
         public HomeController(ISnackRepository snackRepository)
         {
             _snackRepository = snackRepository;

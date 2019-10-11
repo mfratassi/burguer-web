@@ -52,6 +52,8 @@ namespace LanchesWeb
                 .AddEntityFrameworkStores<LanchesWebContext>()
                 .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
